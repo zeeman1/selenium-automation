@@ -1,4 +1,4 @@
-package com.java.selelenium.automation.base;
+package com.java.selenium.automation.base;
 
 public class TestJavaClass {
 

@@ -1,6 +1,7 @@
 package com.java.selenium.automation.actions;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.java.selenium.automation.base.TestBase;
@@ -28,5 +29,12 @@ public class ActionEngine extends TestBase {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void scrollPage() throws Throwable{
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0, 200)");
+	}
+	public String getText(By locator) {
+		return getWebElement(locator).getText();
+	}
 }

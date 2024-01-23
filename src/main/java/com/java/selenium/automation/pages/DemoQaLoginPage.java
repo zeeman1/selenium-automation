@@ -15,7 +15,7 @@ public class DemoQaLoginPage extends ActionEngine {
 	public void loginIntoDemoQA() throws Throwable {
 		 type(userNameText, LoadProps.getData("loginuser"));
 		 type(passwordText, LoadProps.getData("loginpassword"));
-		 scrollPage();
+		 scrollPage(200);
 		 Thread.sleep(5000);
 		 click(logInButton);
 		 Thread.sleep(5000);

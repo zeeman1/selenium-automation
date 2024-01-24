@@ -15,17 +15,17 @@ public class RegisterPage extends ActionEngine {
 	
 	public void registerUser() throws Throwable{
 		scrollPage(100);
-		click(newUserButton);
+		click(newUserButton, "New User Button");
 		scrollPage(100);
-		type(firstNameText, "Nahom");
-		type(lastNameText, "Tegegn");
-		type(userNameText, "Nahom1");
-		type(passwordText, "Nahom@2024");
+		type(firstNameText, "Nahom", "");
+		type(lastNameText, "Tegegn", "");
+		type(userNameText, "Nahom1", "");
+		type(passwordText, "Nahom@2024.com", "");
 		scrollPage(120);
 		switchToFrame("a-azpax2w7fxdj");
 		jsClick(recaptchID);
 		Thread.sleep(5000);
-		click(registerButton);
+		click(registerButton, "Register Button");
 	}
 
 }

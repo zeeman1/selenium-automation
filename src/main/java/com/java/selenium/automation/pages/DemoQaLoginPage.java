@@ -13,11 +13,11 @@ public class DemoQaLoginPage extends ActionEngine {
 	private By LoggedinUsed = By.id("userName-value");
 	
 	public void loginIntoDemoQA() throws Throwable {
-		 type(userNameText, LoadProps.getData("loginuser"));
-		 type(passwordText, LoadProps.getData("loginpassword"));
+		 type(userNameText, LoadProps.getData("loginuser"), "");
+		 type(passwordText, LoadProps.getData("loginpassword"), "");
 		 scrollPage(200);
 		 Thread.sleep(5000);
-		 click(logInButton);
+		 click(logInButton, "Login Button");
 		 Thread.sleep(5000);
 		 String userName = getText(LoggedinUsed);
 		 System.out.println("userName:: "+userName);

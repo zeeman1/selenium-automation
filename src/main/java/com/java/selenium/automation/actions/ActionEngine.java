@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.java.selenium.automation.base.TestBase;
+import com.relevantcodes.extentreports.LogStatus;
 
 public class ActionEngine extends TestBase {
 	
@@ -12,12 +13,20 @@ public class ActionEngine extends TestBase {
 		return driver.findElement(locator);
 	}
 	
-	public void click(By locator) throws Throwable {
+	public void click(By locator, String fieldName) throws Throwable {
+		boolean flag = false;
 		try {
 			WebElement we =getWebElement(locator);
 			we.click();
+			flag = true;
 		}catch(Exception e) {
 			e.printStackTrace();
+		}finally {
+			if(flag) {
+				extentTest.log(LogStatus.PASS, "Succefully clicked on the field '"+fieldName+"'");
+			}else {
+				extentTest.log(LogStatus.FAIL, "Failed to click on the field '"+fieldName+"'");
+			}
 		}
 	}
 	
@@ -31,12 +40,20 @@ public class ActionEngine extends TestBase {
 		driver.switchTo().frame(1);
 	}
 	
-	public void type(By locator, String data) throws Throwable {
+	public void type(By locator, String data, String fieldName) throws Throwable {
+		boolean flag = false;
 		try {
 			WebElement we =getWebElement(locator);
 			we.sendKeys(data);
+			flag = true;
 		}catch(Exception e) {
 			e.printStackTrace();
+		}finally {
+			if(flag) {
+				extentTest.log(LogStatus.PASS, "The data '"+data+"' is succefully entered into the field '"+fieldName+"'");
+			}else {
+				extentTest.log(LogStatus.FAIL, "It is failed to enter the data '"+data+"' into the field '"+fieldName+"'");
+			}
 		}
 	}
 	

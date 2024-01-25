@@ -16,7 +16,7 @@ public class TextBoxTest extends ActionEngine {
 	
 	@Test
 	public void submitFormTest2() throws Throwable{
-		extentTest = extentReports.startTest("Sunmit Form Test Case2", "Sunmit Form Test Case Desc");
+		extentTest = extentReports.startTest("Sunmit Form Test Case2", "Sunmit Form Test Case2 Desc");
 		textBoxPage.submitForm();
 	}
 }

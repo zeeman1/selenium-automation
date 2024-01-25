@@ -1,17 +1,34 @@
 package com.java.selenium.automation.base;
 
+import java.io.File;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 import com.java.selenium.automation.utilities.LoadProps;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestBase {
-	public static WebDriver driver = null;;
+	public static WebDriver driver = null;
+	public static ExtentReports extentReports;
+	public static ExtentTest extentTest;
+	public String reportFilePath;
+	
+	
+	@BeforeSuite
+	public void beforeAll() throws Throwable{
+		reportFilePath = System.getProperty("user.dir")+File.separator+"Reports"+File.separator+"myreports.html";
+		System.out.println("reportFilePath : "+reportFilePath);
+		extentReports = new ExtentReports(reportFilePath);
+	}
 	
 	@Parameters({"browser"})
 	@BeforeMethod
@@ -40,6 +57,7 @@ public class TestBase {
 	@AfterMethod
 	public void tearDown() {
 		//driver.close();
+		extentReports.flush();
 	}
 
 }

@@ -1,11 +1,8 @@
 package com.java.selenium.automation.actions;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.java.selenium.automation.base.TestBase;
 import com.relevantcodes.extentreports.LogStatus;
@@ -66,25 +63,6 @@ public class ActionEngine extends TestBase {
 	}
 	public String getText(By locator) {
 		return getWebElement(locator).getText();
-	}
-	
-	public void accepAlert() throws Throwable {
-		boolean flag = false;
-
-		try {
-			WebDriverWait wait = new WebDriverWait(driver, 5);
-			Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-			alert.accept();
-			flag = true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (flag) {
-				extentTest.log(LogStatus.PASS, "Succefully clicked on OK/Accept button");
-			} else {
-				extentTest.log(LogStatus.FAIL, "Failed to click on OK/Accept button");
-			}
-		}
 	}
 	
 }

@@ -106,4 +106,25 @@ public class ActionEngine extends TestBase {
 		}
 	}
 	
+	public void handleAlertTextBox(String message) throws Throwable {
+		boolean flag = false;
+
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, 5);
+			Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+			alert.sendKeys(message);
+			Thread.sleep(2000);
+			alert.accept();
+			flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (flag) {
+				extentTest.log(LogStatus.PASS, "Succefully clicked on Dissmis/Cancell button");
+			} else {
+				extentTest.log(LogStatus.FAIL, "Failed to click on Dissmis/Cancell button");
+			}
+		}
+	}
+	
 }

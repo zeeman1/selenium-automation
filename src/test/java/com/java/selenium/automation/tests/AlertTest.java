@@ -14,10 +14,16 @@ public class AlertTest extends ActionEngine {
 		alertPage.acceptAlertBox();
 	}
 	
-	@Test
+	//@Test
 	public void alertDismissTest() throws Throwable{
 		extentTest = extentReports.startTest("Alert Test Case to Dismiss", "Alert Test Dismiss Desc");
 		alertPage.dissmisAletbox();
+	}
+	
+	@Test
+	public void alertSendKeyssTest() throws Throwable{
+		extentTest = extentReports.startTest("Alert Test Case to use send Keys ", "Alert Test send Keys Desc");
+		alertPage.handleAlertText();
 	}
 
 }

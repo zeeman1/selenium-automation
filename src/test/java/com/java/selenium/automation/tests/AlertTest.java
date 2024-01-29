@@ -8,10 +8,16 @@ import com.java.selenium.automation.pages.AlertPage;
 public class AlertTest extends ActionEngine {
 	AlertPage alertPage = new AlertPage();
 	
-	@Test
+	//@Test
 	public void alertAcceptTest() throws Throwable{
 		extentTest = extentReports.startTest("Alert Test Case", "Alert Test Desc");
 		alertPage.acceptAlertBox();
+	}
+	
+	@Test
+	public void alertDismissTest() throws Throwable{
+		extentTest = extentReports.startTest("Alert Test Case to Dismiss", "Alert Test Dismiss Desc");
+		alertPage.dissmisAletbox();
 	}
 
 }

@@ -68,7 +68,7 @@ public class ActionEngine extends TestBase {
 		return getWebElement(locator).getText();
 	}
 	
-	public void accepAlert() throws Throwable {
+	public void acceptAlert() throws Throwable {
 		boolean flag = false;
 
 		try {
@@ -83,6 +83,25 @@ public class ActionEngine extends TestBase {
 				extentTest.log(LogStatus.PASS, "Succefully clicked on OK/Accept button");
 			} else {
 				extentTest.log(LogStatus.FAIL, "Failed to click on OK/Accept button");
+			}
+		}
+	}
+	
+	public void dissmisAlert() throws Throwable {
+		boolean flag = false;
+
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, 5);
+			Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+			alert.dismiss();
+			flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (flag) {
+				extentTest.log(LogStatus.PASS, "Succefully clicked on Dissmis/Cancell button");
+			} else {
+				extentTest.log(LogStatus.FAIL, "Failed to click on Dissmis/Cancell button");
 			}
 		}
 	}

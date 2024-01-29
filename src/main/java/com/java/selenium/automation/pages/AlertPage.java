@@ -11,7 +11,17 @@ public class AlertPage extends ActionEngine {
 		Thread.sleep(3000);
 		scrollPage(200);
 		click(alertButon, "Click Me Button");
-		accepAlert();
+		acceptAlert();
 	}
+     public void dissmisAletbox() throws Throwable{
+    	 
+    	Thread.sleep(3000);
+ 		scrollPage(200);
+ 		click(alertButon, "Click Me Button");
+ 		Thread.sleep(1000);
+ 		dissmisAlert();
 
+     }
 }
+     
+     

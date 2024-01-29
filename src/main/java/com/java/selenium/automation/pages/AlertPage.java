@@ -6,6 +6,7 @@ import com.java.selenium.automation.actions.ActionEngine;
 
 public class AlertPage extends ActionEngine {
 	private By alertButon = By.id("confirmButton");
+	private By promtButton = By.id("promtButton");
 	
 	public void acceptAlertBox() throws Throwable{
 		Thread.sleep(3000);
@@ -22,6 +23,14 @@ public class AlertPage extends ActionEngine {
  		dissmisAlert();
 
      }
+     
+     public void handleAlertText() throws Throwable{
+    	Thread.sleep(3000);
+  		scrollPage(200);
+    	click(promtButton, "Promt Button to enter Some Text");
+    	handleAlertTextBox("Good Morning NaHom!");
+     }
+     
 }
      
      

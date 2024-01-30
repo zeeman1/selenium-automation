@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.java.selenium.automation.base.TestBase;
@@ -123,6 +124,79 @@ public class ActionEngine extends TestBase {
 				extentTest.log(LogStatus.PASS, "Succefully clicked on Dissmis/Cancell button");
 			} else {
 				extentTest.log(LogStatus.FAIL, "Failed to click on Dissmis/Cancell button");
+			}
+		}
+	}
+	
+	public void selectByVisibleText(By locator, String visibleText, String locatorName) throws Throwable{
+		boolean flag = false;
+		
+		try {
+			WebElement we = getWebElement(locator);
+			Select dropDown = new Select(we);
+			dropDown.selectByVisibleText(visibleText);
+			flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(flag) {
+				extentTest.log(LogStatus.PASS, "Successfully selected the value '"+visibleText+"' from the dropdown '"+locatorName+"'");
+			}else {
+				extentTest.log(LogStatus.FAIL, "Failed to select the value '"+visibleText+"' from the dropdown '"+locatorName+"'");
+			}
+		}
+	}
+	
+	public void selectByValue(By locator, String value, String locatorName) throws Throwable{
+		boolean flag = false;
+		
+		try {
+			WebElement we = getWebElement(locator);
+			Select dropDown = new Select(we);
+			dropDown.selectByValue(value);
+			flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(flag) {
+				extentTest.log(LogStatus.PASS, "Successfully selected the value '"+value+"' from the dropdown '"+locatorName+"'");
+			}else {
+				extentTest.log(LogStatus.FAIL, "Failed to select the value '"+value+"' from the dropdown '"+locatorName+"'");
+			}
+		}
+	}
+	
+	public void selectByIndex(By locator, int index, String locatorName) throws Throwable{
+		boolean flag = false;
+		
+		try {
+			WebElement we = getWebElement(locator);
+			Select dropDown = new Select(we);
+			dropDown.selectByIndex(index);
+			flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(flag) {
+				extentTest.log(LogStatus.PASS, "Successfully selected the value '"+index+"' from the dropdown '"+locatorName+"'");
+			}else {
+				extentTest.log(LogStatus.FAIL, "Failed to select the value '"+index+"' from the dropdown '"+locatorName+"'");
+			}
+		}
+	}
+	
+	public void waitForElement(By locator, int withTime, String locatorName) throws Throwable{
+		boolean flag = false;
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, withTime);
+			wait.until(ExpectedConditions.elementToBeClickable(locator));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(flag) {
+				
+			}else {
+				
 			}
 		}
 	}

@@ -1,6 +1,8 @@
 package com.java.selenium.automation.base;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -22,13 +24,17 @@ public class TestBase {
 	public static ExtentReports extentReports;
 	public static ExtentTest extentTest;
 	public String reportFilePath;
+	String startDate = "";
 	
 	
 	@BeforeSuite
 	public void beforeAll() throws Throwable{
-		reportFilePath = System.getProperty("user.dir")+File.separator+"Reports"+File.separator+"myreports.html";
+		SimpleDateFormat sdf = new SimpleDateFormat("MMM_dd_yyyy_z_HH_mm_ss");
+		startDate = sdf.format(new Date());
+		reportFilePath = System.getProperty("user.dir")+File.separator+"Reports"+File.separator+"reports_"+startDate+".html";
+		extentReports = new ExtentReports(reportFilePath);	
+		
 		System.out.println("reportFilePath : "+reportFilePath);
-		extentReports = new ExtentReports(reportFilePath);
 	}
 	
 	@Parameters({"browser"})

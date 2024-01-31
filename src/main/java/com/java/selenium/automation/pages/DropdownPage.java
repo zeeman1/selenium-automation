@@ -15,6 +15,7 @@ public class DropdownPage extends ActionEngine {
 	
 	public void selectByValue() throws Throwable{
 		scrollPage(300);
+		fluentWaitForElement(selectMenu, 20, 1, "Old Style Select Menu");
 		selectByValue(selectMenu, "6", "Old Style Select Menu");
 	}
 	

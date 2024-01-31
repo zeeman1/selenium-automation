@@ -1,13 +1,20 @@
 package com.java.selenium.automation.actions;
 
+import java.time.Duration;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.google.common.base.Function;
 import com.java.selenium.automation.base.TestBase;
 import com.relevantcodes.extentreports.LogStatus;
 
@@ -200,5 +207,31 @@ public class ActionEngine extends TestBase {
 			}
 		}
 	}
+	
+	
+	public void fluentWaitForElement(By locator, int withTime, int pollingTime, String locatorName) throws Throwable{
+		boolean flag = false;
+		try {
+			Wait<WebDriver> wait = new FluentWait<>(driver)
+					.withTimeout(Duration.ofSeconds(withTime))
+					.pollingEvery(Duration.ofSeconds(pollingTime)).ignoring(WebDriverException.class);
+			wait.until(new Function<WebDriver, WebElement>(){
+				public WebElement apply(WebDriver driver) {
+					return getWebElement(locator);
+				}
+			});
+			flag = true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(flag) {
+				
+			}else {
+				
+			}
+		}
+	}
+	
+	
 	
 }

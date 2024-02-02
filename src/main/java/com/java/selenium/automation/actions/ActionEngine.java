@@ -8,6 +8,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
@@ -232,6 +233,23 @@ public class ActionEngine extends TestBase {
 		}
 	}
 	
-	
+	public void rightClickOp(By locator, String locatorName) throws Throwable{
+		boolean flag = false;
+		try {
+			WebElement element = getWebElement(locator);
+			
+			Actions actions = new Actions(driver);
+			actions.contextClick().perform();
+			flag = true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(flag) {
+				
+			}else {
+				
+			}
+		}
+	}
 	
 }

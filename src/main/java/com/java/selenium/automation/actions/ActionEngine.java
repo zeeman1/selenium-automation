@@ -1,13 +1,21 @@
 package com.java.selenium.automation.actions;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
@@ -36,7 +44,7 @@ public class ActionEngine extends TestBase {
 			if(flag) {
 				extentTest.log(LogStatus.PASS, "Succefully clicked on the field '"+fieldName+"'");
 			}else {
-				extentTest.log(LogStatus.FAIL, "Failed to click on the field '"+fieldName+"'");
+				extentTest.log(LogStatus.FAIL, "Failed to click on the field '"+fieldName+"'"+extentTest.addScreenCapture(getScreenShot(fieldName)));
 			}
 		}
 	}
@@ -63,7 +71,7 @@ public class ActionEngine extends TestBase {
 			if(flag) {
 				extentTest.log(LogStatus.PASS, "The data '"+data+"' is succefully entered into the field '"+fieldName+"'");
 			}else {
-				extentTest.log(LogStatus.FAIL, "It is failed to enter the data '"+data+"' into the field '"+fieldName+"'");
+				extentTest.log(LogStatus.FAIL, "It is failed to enter the data '"+data+"' into the field '"+fieldName+"'"+extentTest.addScreenCapture(getScreenShot(fieldName)));
 			}
 		}
 	}
@@ -90,7 +98,7 @@ public class ActionEngine extends TestBase {
 			if (flag) {
 				extentTest.log(LogStatus.PASS, "Succefully clicked on OK/Accept button");
 			} else {
-				extentTest.log(LogStatus.FAIL, "Failed to click on OK/Accept button");
+				extentTest.log(LogStatus.FAIL, "Failed to click on OK/Accept button"+extentTest.addScreenCapture(getScreenShot("accptAlert")));
 			}
 		}
 	}
@@ -149,7 +157,7 @@ public class ActionEngine extends TestBase {
 			if(flag) {
 				extentTest.log(LogStatus.PASS, "Successfully selected the value '"+visibleText+"' from the dropdown '"+locatorName+"'");
 			}else {
-				extentTest.log(LogStatus.FAIL, "Failed to select the value '"+visibleText+"' from the dropdown '"+locatorName+"'");
+				extentTest.log(LogStatus.FAIL, "Failed to select the value '"+visibleText+"' from the dropdown '"+locatorName+"'"+extentTest.addScreenCapture(getScreenShot(locatorName)));
 			}
 		}
 	}
@@ -168,7 +176,7 @@ public class ActionEngine extends TestBase {
 			if(flag) {
 				extentTest.log(LogStatus.PASS, "Successfully selected the value '"+value+"' from the dropdown '"+locatorName+"'");
 			}else {
-				extentTest.log(LogStatus.FAIL, "Failed to select the value '"+value+"' from the dropdown '"+locatorName+"'");
+				extentTest.log(LogStatus.FAIL, "Failed to select the value '"+value+"' from the dropdown '"+locatorName+"'"+extentTest.addScreenCapture(getScreenShot(locatorName)));
 			}
 		}
 	}
@@ -187,7 +195,7 @@ public class ActionEngine extends TestBase {
 			if(flag) {
 				extentTest.log(LogStatus.PASS, "Successfully selected the value '"+index+"' from the dropdown '"+locatorName+"'");
 			}else {
-				extentTest.log(LogStatus.FAIL, "Failed to select the value '"+index+"' from the dropdown '"+locatorName+"'");
+				extentTest.log(LogStatus.FAIL, "Failed to select the value '"+index+"' from the dropdown '"+locatorName+"'"+extentTest.addScreenCapture(getScreenShot(locatorName)));
 			}
 		}
 	}
@@ -232,6 +240,61 @@ public class ActionEngine extends TestBase {
 		}
 	}
 	
-	
+	public void rightClickAction(By locator, String locatorName) throws Throwable {
+		boolean flag = false;
+		try {
+			Actions action = new Actions(driver);
+
+			WebElement element = getWebElement(locator);
+			action.contextClick(element).perform();
+			flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (flag) {
+
+			} else {
+
+			}
+		}
+	}
+	public void doubleClickAction(By locator, String locatorName) throws Throwable {
+		boolean flag = false;
+		try {
+			Actions action = new Actions(driver);
+
+			WebElement element = getWebElement(locator);
+
+			action.doubleClick(element).perform();
+			flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (flag) {
+
+			} else {
+
+			}
+		}
+	}
+
+	public String getScreenShot(String locatorName) throws Throwable {
+		String screenShotLocation = "";
+		try {
+			String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+			screenShotLocation = System.getProperty("user.dir") + File.separator + "FailedScreenShorts" + File.separator
+					+ locatorName + dateName + ".png";
+			File finalDestination = new File(screenShotLocation);
+
+			TakesScreenshot tss = (TakesScreenshot) driver;
+			File source = tss.getScreenshotAs(OutputType.FILE);
+
+			FileUtils.copyFile(source, finalDestination);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return screenShotLocation;
+	}
 	
 }

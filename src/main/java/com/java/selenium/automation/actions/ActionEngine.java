@@ -14,7 +14,6 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -36,6 +35,7 @@ public class ActionEngine extends TestBase {
 		boolean flag = false;
 		try {
 			WebElement we =getWebElement(locator);
+			highlightElement(we);
 			we.click();
 			flag = true;
 		}catch(Exception e) {
@@ -51,6 +51,7 @@ public class ActionEngine extends TestBase {
 	
 	public void jsClick(By locator) throws Throwable{
 		WebElement we =getWebElement(locator);
+		highlightElement(we);
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].click();", we);
 	}
@@ -63,6 +64,7 @@ public class ActionEngine extends TestBase {
 		boolean flag = false;
 		try {
 			WebElement we =getWebElement(locator);
+			highlightElement(we);
 			we.sendKeys(data);
 			flag = true;
 		}catch(Exception e) {
@@ -148,6 +150,7 @@ public class ActionEngine extends TestBase {
 		
 		try {
 			WebElement we = getWebElement(locator);
+			highlightElement(we);
 			Select dropDown = new Select(we);
 			dropDown.selectByVisibleText(visibleText);
 			flag = true;
@@ -167,6 +170,7 @@ public class ActionEngine extends TestBase {
 		
 		try {
 			WebElement we = getWebElement(locator);
+			highlightElement(we);
 			Select dropDown = new Select(we);
 			dropDown.selectByValue(value);
 			flag = true;
@@ -186,6 +190,7 @@ public class ActionEngine extends TestBase {
 		
 		try {
 			WebElement we = getWebElement(locator);
+			highlightElement(we);
 			Select dropDown = new Select(we);
 			dropDown.selectByIndex(index);
 			flag = true;
@@ -246,6 +251,7 @@ public class ActionEngine extends TestBase {
 			Actions action = new Actions(driver);
 
 			WebElement element = getWebElement(locator);
+			highlightElement(element);
 			action.contextClick(element).perform();
 			flag = true;
 		} catch (Exception e) {
@@ -264,7 +270,7 @@ public class ActionEngine extends TestBase {
 			Actions action = new Actions(driver);
 
 			WebElement element = getWebElement(locator);
-
+			highlightElement(element);
 			action.doubleClick(element).perform();
 			flag = true;
 		} catch (Exception e) {
@@ -296,5 +302,16 @@ public class ActionEngine extends TestBase {
 		}
 		return screenShotLocation;
 	}
+	
+	private void highlightElement(WebElement webElement) throws Throwable {
+
+		try {
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", webElement);
+			Thread.sleep(1000);
+		} catch (Exception e) {
+		}
+	}
+	
 	
 }

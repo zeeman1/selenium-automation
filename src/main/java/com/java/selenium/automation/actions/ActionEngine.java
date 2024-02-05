@@ -245,25 +245,6 @@ public class ActionEngine extends TestBase {
 		}
 	}
 	
-	public void rightClickOp(By locator, String locatorName) throws Throwable{
-		boolean flag = false;
-		try {
-			WebElement element = getWebElement(locator);
-			
-			Actions actions = new Actions(driver);
-			actions.contextClick().perform();
-			flag = true;
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			if(flag) {
-				
-			}else {
-				
-			}
-		}
-	}
-
 	public void rightClickAction(By locator, String locatorName) throws Throwable {
 		boolean flag = false;
 		try {

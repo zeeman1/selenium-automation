@@ -4,7 +4,7 @@
 	<test thread-count="5" name="Test">
 	<parameter name="browser" value="edge"></parameter>
 		<classes>
-			<class name="com.java.selenium.automation.tests.ActionsTest"></class>
+			<class name="com.java.selenium.automation.tests.AlertTest"></class>
 			<!-- <class name="com.java.selenium.automation.tests.MyTestCase2"></class> -->
 		</classes>
 	</test> <!-- Test -->

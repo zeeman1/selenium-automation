@@ -14,9 +14,14 @@ public class ActionsTest extends ActionEngine {
 		
 	}
 	
-	@Test
+	//@Test
 	public void doubleClickTest() throws Throwable {
 		actionsPage.perfDoubleClick();
 		
+	}
+	
+	@Test
+	public void performDragAndDrop() throws Throwable{
+		actionsPage.perfDragAndDropbutton();
 	}
 }

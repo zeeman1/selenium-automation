@@ -264,6 +264,29 @@ public class ActionEngine extends TestBase {
 			}
 		}
 	}
+	public void dragAndDropAction(By dragable, By droppable, String locatorName) throws Throwable {
+		boolean flag = false;
+		try {
+			Actions action = new Actions(driver);
+
+			WebElement dragableElement = getWebElement(dragable);
+			WebElement droppableElement = getWebElement(droppable);
+			
+			highlightElement(dragableElement);
+			action.dragAndDrop(dragableElement, droppableElement).perform();
+			
+			highlightElement(droppableElement);
+			flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (flag) {
+
+			} else {
+
+			}
+		}
+	}
 	public void doubleClickAction(By locator, String locatorName) throws Throwable {
 		boolean flag = false;
 		try {

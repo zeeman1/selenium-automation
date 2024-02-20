@@ -133,6 +133,10 @@ public class ExcelLib {
   	try {
   	  Hashtable<String, String> testData = obj.getData("CreateAccount", "RegressionSuite");
   	  System.out.println(testData);
+  	  for(String key : testData.keySet()) {
+  		  System.out.println("Key: "+key+" Data: "+testData.get(key));
+  	  }
+  	  
   	} catch (Throwable e) {
       e.printStackTrace();
     }

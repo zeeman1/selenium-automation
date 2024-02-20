@@ -1,4 +1,4 @@
-package com.java.selenium.util;
+package com.java.selenium.automation.utilities;
 
 import java.text.NumberFormat;
 import java.text.ParseException;

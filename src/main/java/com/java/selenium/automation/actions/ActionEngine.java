@@ -3,6 +3,7 @@ package com.java.selenium.automation.actions;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
@@ -27,7 +28,7 @@ import com.relevantcodes.extentreports.LogStatus;
 
 public class ActionEngine extends TestBase {
 	
-	private WebElement getWebElement(By locator) {
+	public WebElement getWebElement(By locator) {
 		return driver.findElement(locator);
 	}
 	
@@ -264,6 +265,29 @@ public class ActionEngine extends TestBase {
 			}
 		}
 	}
+	public void dragAndDropAction(By dragable, By droppable, String locatorName) throws Throwable {
+		boolean flag = false;
+		try {
+			Actions action = new Actions(driver);
+
+			WebElement dragableElement = getWebElement(dragable);
+			WebElement droppableElement = getWebElement(droppable);
+			
+			highlightElement(dragableElement);
+			action.dragAndDrop(dragableElement, droppableElement).perform();
+			
+			highlightElement(droppableElement);
+			flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (flag) {
+
+			} else {
+
+			}
+		}
+	}
 	public void doubleClickAction(By locator, String locatorName) throws Throwable {
 		boolean flag = false;
 		try {
@@ -310,6 +334,23 @@ public class ActionEngine extends TestBase {
 			js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", webElement);
 			Thread.sleep(1000);
 		} catch (Exception e) {
+		}
+	}
+	
+	public void handleWithBrowserWindows(int windowIndex)throws Throwable{
+		boolean flag = false;
+		
+		try {
+			ArrayList<String> windows = new ArrayList<String>(driver.getWindowHandles());
+			if(windowIndex < windows.size() ) {
+				driver.switchTo().window(windows.get(windowIndex));
+			}
+			flag = true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			
 		}
 	}
 	
